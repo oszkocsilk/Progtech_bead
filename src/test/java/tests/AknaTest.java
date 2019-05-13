@@ -5,12 +5,22 @@ import sample.Akna;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class AknaTest {
+/**
+ *
+ */
+public class AknaTest {
+    /**
+     *
+     */
+
     Akna akna=new Akna();
 
+    /**
+     *
+     */
     @Test
     void aknák() {
-        assertEquals(2,akna.getNumberOfBombs());
+        assertEquals(80,akna.getNumberOfBombs());
     }
 
 

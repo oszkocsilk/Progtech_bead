@@ -3,6 +3,8 @@ package sample;
 import javafx.animation.AnimationTimer;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
+import lombok.extern.slf4j.Slf4j;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -11,6 +13,7 @@ import java.util.ArrayList;
 /**
  * This watches the mouse click, runs the timer, count disabled buttons, watches if you win or lost.
  */
+@Slf4j
 public class Controller implements mezo {
 
     /**
@@ -43,14 +46,16 @@ public class Controller implements mezo {
          */
         @Override
         public void handle(MouseEvent event) {
+            log.info("Waiting for mouse event");
             for (int i = 0; i < aknakereso.getMezo().length; i++) {
                 for (int j = 0; j < aknakereso.getMezo().length; j++) {
                     if (event.getSource().equals(aknakereso.getMezo()[i][j])) {
+                            log.info("Mouse click happened");
                             disabled++;
                         if (counter[i][j] != 666) {
 
                             if (counter[i][j] == 0) {
-
+                                log.info("Zeros exploded.");
                                 aknakereso.getMezo()[i][j].setText(counter[i][j] + "");
                                 aknakereso.getMezo()[i][j].setDisable(true);
 
@@ -58,6 +63,7 @@ public class Controller implements mezo {
                                 nullBlower.Blower(toClear);
 
                             } else {
+                                log.info("Number selected");
                                 aknakereso.getMezo()[i][j].setText(counter[i][j] + "");
                                 aknakereso.getMezo()[i][j].setDisable(true);
                             }
@@ -65,8 +71,8 @@ public class Controller implements mezo {
                             win();
                             nullBlower.setDisabledCounter(0);
                         } else {
-                             b.Blowed();
-
+                            log.info("You chose a BOMB");
+                            b.Blowed();
                             b.display("LOSER","YOU LOST!");
                             lose=true;
 
@@ -90,6 +96,7 @@ public class Controller implements mezo {
                 }
                 else if(disabled==(all-akna.getNumberOfBombs()) ){
                     win=true;
+                    log.info("Game won, here are no available non-bomb button.");
                 }
             }
         }
@@ -108,7 +115,6 @@ public class Controller implements mezo {
             public void handle(long l) {
 
                     timer++;
-                  //  System.out.println(timer / 60);
 
                 if (win==true) {
 

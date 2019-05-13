@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class Akna implements mezo{
 
     private ArrayList<Integer>list = new ArrayList<Integer>();
-    private double NumberOfBombs=2.0;
+    private double NumberOfBombs=80.0;
 
     /**
      * Places the number of bombs that given by @NumberOfBombs, than counts the bombs in the neighbours.
